@@ -1,7 +1,7 @@
 ---
 title: "Проведение турниров"
 shortTitle: "Турниры"
-image: "/assets/features/tournament.png"
+image: "/accept_landing/assets/features/tournament.png"
 svg: '<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 <path d="M8 21l8 0"></path>
 <path d="M12 17l0 4"></path>
