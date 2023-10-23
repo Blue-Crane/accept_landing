@@ -1,0 +1,168 @@
+---
+import { getCollection } from 'astro:content';
+import Icon from "./Icon.astro"
+
+const features = await getCollection("features")
+---
+
+<div class="wrapper">
+    <div class="accordion">
+        {features.map((feature, index) => (
+            <div
+                class={`accordion-panel ${index == 0 ? "expanded" : ""}`}
+            >
+                <h3 id={`panel${index}-heading`}>
+                    <button
+                        class="accordion-trigger"
+                        aria-controls={`panel${index}-content`}
+                    >
+                        <Icon icon={feature.data.svg} />
+                        <span class="accordion-title">
+                            {feature.data.shortTitle}
+                        </span>
+                    </button>
+                </h3>
+                <div
+                    class="accordion-content"
+                    id={`panel${index}-content`}
+                    set:html={feature.body}
+                    aria-labelledby={`panel${index}-heading`}
+                    role="region"
+                />
+                <img src={feature.data.image} alt="Beautiful image" />
+            </div>
+        ))}
+    </div>
+</div>
+
+<script>
+    const accordion = document.querySelector(".accordion");
+    accordion?.addEventListener('click', (e) => {
+        // @ts-ignore
+        const active = e.target.closest(".accordion-panel");
+        if (!active) return;
+        const panels = active.parentElement.querySelectorAll(".accordion-panel");
+        panels.forEach((panel: any) => {
+            panel.classList.remove("expanded")
+        });
+        active.classList.add("expanded")
+    })
+</script>
+
+<style>
+    .wrapper{
+        margin-inline: auto;
+    }
+    .accordion{
+        --_button-size: 2.5rem;
+        --_panel-padding: .75rem;
+        --_panel-gap: 1rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 5px;
+        contain: content;
+    }
+    @media (orientation: landscape) and (min-width: 700px){
+        .accordion{
+            height: 25rem;
+            flex-direction: row;
+        }
+    }
+    .accordion-panel{
+        position: relative;
+        isolation: isolate;
+        flex-basis: calc(var(--_button-size) + 2 * var(--_panel-padding));
+        width: 0px;
+        padding: var(--_panel-padding);
+        overflow: hidden;
+        border-radius: calc((var(--_button-size) + 2 * var(--_panel-padding)) / 2);
+        box-shadow: 1px 1px 5px black;
+    }
+
+    @media (prefers-reduced-motion: no-preference){
+        .accordion-panel{
+            transition: flex-basis .75s, flex-grow .75s;
+        }
+    }
+
+    .accordion-title{
+        position: relative;
+        isolation: isolate;
+        font-size: 1.5rem;
+        font-weight: 500;
+        display: grid;
+        align-items: center;
+    }
+
+    .expanded{
+        flex-basis: clamp(15rem, 30vh, 30rem);
+        flex-grow: 1;
+        padding-right: calc(var(--_button-size) * 2);
+    }
+    @media (orientation: landscape) {
+        .expanded{
+        }
+    }
+
+
+    .accordion-content{
+        margin-left: calc(var(--_button-size) + var(--_panel-gap)/2);
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+
+    .expanded > .accordion-content{
+        transform: translateY(0rem);
+        opacity: 1;
+        transition: opacity .5s .5s, transform .5s .5s;
+    }
+
+    .accordion-panel img{
+        position: absolute;
+        inset: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: filter 1s;
+    }
+
+    .expanded img{
+        filter: blur(1px)
+    }
+    .accordion-trigger{
+        outline: 0;
+    }
+    .accordion-panel:focus-within{
+        outline: 3px solid var(--primary);
+        outline-offset: 3px;
+    }
+
+    .accordion-trigger{
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: var(--_panel-gap);
+        height: var(--_button-size);
+        width: var(--_button-size);
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+    }
+    @media (orientation: landscape) {
+        .accordion-title::after{
+            content: '';
+            position: absolute;
+            left: calc(-1 * (var(--_button-size)*4/5 + var(--_panel-gap)));
+
+            width: calc(100% + var(--_button-size) + var(--_panel-gap));
+            height: var(--_button-size);
+            background-color: hsla(0, 0%, 100%, 0.65);
+            z-index: -1;
+            border-radius: 1000px;
+        }
+    }
+</style>
