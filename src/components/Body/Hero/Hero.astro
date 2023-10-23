@@ -1,0 +1,49 @@
+<div class="first">
+    <div class="image-wrapper">
+        <img src="/assets/accept_logo_small.png" >
+    </div>
+    <div>
+        <h1>Accept</h1>
+        <p>цифровой образовательный ресурс для улучшения навыков программирования</p>
+    </div>
+</div>
+
+<style>
+h1{
+    font-size: 5em;
+}
+
+img{
+    aspect-ratio: 729/875;
+    height: 40vh;
+    margin: auto;
+}
+
+.image-wrapper{
+    display: flex;
+    min-width: 50%;
+    background: var(--bg-image-main-top);
+}
+p{
+    max-width: 20em;
+}
+
+.first{
+    width: 60%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+}
+@media (orientation: portrait) {
+    .first{
+        flex-direction: column;
+        min-height: 50vh;
+        margin: 5vh auto;
+    }
+    img{
+        height: 20vh;
+    }
+}
+</style>
