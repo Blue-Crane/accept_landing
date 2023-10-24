@@ -49,7 +49,9 @@ const { title, description } = Astro.props;
           var(--light),
           var(--primary-opacity)
         );
-        background: var(--light);
+        --bg-color: var(--light);
+        background: var(--bg-color);
+        transition: background 0.7s;
       }
 
       :root.theme-dark {
@@ -61,7 +63,8 @@ const { title, description } = Astro.props;
           var(--dark),
           var(--primary-opacity)
         );
-        background: var(--dark);
+        --bg-color: var(--dark);
+        transition: background 0.7s;
       }
 
       /* These backgrounds are displayed below the fold, so we lazy load them
