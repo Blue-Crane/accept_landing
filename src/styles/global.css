@@ -11,13 +11,18 @@
   --font-body: "Exo 2";
   --font-brand: "Exo 2";
 
+  /* Text */
+  --dark-text: #213547;
+  --line-height: 1.5;
+
   /* Transitions */
   --theme-transition: 0.2s ease-in-out;
-  color: var(--dark);
+  color: var(--dark-text);
 }
 
 :root.theme-dark {
   color: var(--light);
+  transition: color 0.5s 0.1s;
 }
 
 html,
@@ -27,11 +32,18 @@ body {
   overflow-x: hidden;
   font-size: 1.1rem;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
-body {
+@media screen and (max-width: 600px) {
+  html,
+  body {
+    font-size: 1rem;
+  }
+}
+
+* {
   font-family: var(--font-body);
-  line-height: 1.5;
 }
 
 *,
@@ -48,6 +60,7 @@ img {
 
 a {
   color: var(--link-color);
+  text-decoration: none;
 }
 
 h1,

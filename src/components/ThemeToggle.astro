@@ -3,36 +3,192 @@
 ---
 
 <theme-toggle>
-  <button id="theme-toggle">Theme</button>
-
-  <style></style>
-
-  <script>
-    class ThemeToggle extends HTMLElement {
-      constructor() {
-        super();
-
-        const button = this.querySelector("#theme-toggle")!;
-
-        /** Set the theme to dark/light mode. */
-        const setTheme = (dark: boolean) => {
-          document.documentElement.classList[dark ? "add" : "remove"](
-            "theme-dark"
-          );
-          button.setAttribute("aria-pressed", String(dark));
-        };
-
-        // Toggle the theme when a user clicks the button.
-        button.addEventListener("click", () => setTheme(!this.isDark()));
-
-        // Initialize button state to reflect current theme.
-        setTheme(this.isDark());
-      }
-
-      isDark() {
-        return document.documentElement.classList.contains("theme-dark");
-      }
-    }
-    customElements.define("theme-toggle", ThemeToggle);
-  </script>
+  <button id="theme-toggle">
+    <span id="on" class="icons">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        id="on-svg"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="m 12,19.00095 a 1.0001109,1.0000559 0 0 1 0.99311,0.883049 l 0.007,0.117007 v 1.000056 a 1.0001109,1.0000559 0 0 1 -1.99322,0.117006 l -0.007,-0.117006 V 20.001006 A 1.0001109,1.0000559 0 0 1 12,19.00095 Z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path1"></path>
+        <path
+          d="m 18.3137,16.910833 0.09401,0.08301 0.700077,0.700039 a 1.0001109,1.0000559 0 0 1 -1.320146,1.497084 l -0.09401,-0.08301 -0.700078,-0.700039 a 1.0001109,1.0000559 0 0 1 1.218135,-1.567088 z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path2"></path>
+        <path
+          d="m 7.0064461,16.993838 a 1.0001109,1.0000559 0 0 1 0.083009,1.320074 l -0.083009,0.09401 -0.7000777,0.700039 a 1.0001109,1.0000559 0 0 1 -1.497166,-1.320074 l 0.083009,-0.094 0.7000776,-0.700039 a 1.0001109,1.0000559 0 0 1 1.4141571,0 z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path3"></path>
+        <path
+          d="m 3.9991125,11.000503 a 1.0001109,1.0000559 0 0 1 0.117013,1.993111 l -0.117013,0.007 H 2.9990016 a 1.0001109,1.0000559 0 0 1 -0.117013,-1.993112 l 0.117013,-0.007 z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path4"></path>
+        <path
+          d="m 21.000998,11.000503 a 1.0001109,1.0000559 0 0 1 0.117013,1.993111 l -0.117013,0.007 h -1.000111 a 1.0001109,1.0000559 0 0 1 -0.117013,-1.993112 l 0.117013,-0.007 z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path5"></path>
+        <path
+          d="m 6.212358,4.810157 0.09401,0.083005 0.7000777,0.7000391 A 1.0001109,1.0000559 0 0 1 5.6862996,7.0902845 L 5.5922892,7.0072798 4.8922116,6.3072407 a 1.0001109,1.0000559 0 0 1 1.217135,-1.5670876 l 0.1020113,0.070004 z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path6"></path>
+        <path
+          d="m 19.107788,4.8931617 a 1.0001109,1.0000559 0 0 1 0.08301,1.3200738 l -0.08301,0.094005 -0.700077,0.7000391 A 1.0001109,1.0000559 0 0 1 16.910545,5.6872061 l 0.08301,-0.094005 0.700078,-0.7000391 a 1.0001109,1.0000559 0 0 1 1.414156,0 z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path7"></path>
+        <path
+          d="m 12,2 a 1.0001109,1.0000559 0 0 1 0.99311,0.8830493 l 0.007,0.1170066 v 1.0000559 a 1.0001109,1.0000559 0 0 1 -1.99322,0.1170065 l -0.007,-0.1170065 V 3.0000559 A 1.0001109,1.0000559 0 0 1 12,2 Z"
+          stroke-width="0"
+          fill="currentColor"
+          id="path8"></path>
+        <path
+          d="M 12,7.0002794 A 5.0005546,5.0002794 0 1 1 7.0044458,12.217571 l -0.005,-0.217012 0.005,-0.217012 A 5.0005546,5.0002794 0 0 1 12,7.0002794 Z"
+          stroke-width="0"
+          id="path9"></path>
+      </svg>
+    </span>
+    <span id="off" class="icons">
+      <svg
+        id="off-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+        ></path>
+      </svg>
+    </span>
+  </button>
 </theme-toggle>
+
+<style>
+  span {
+    aspect-ratio: 1 /1;
+    width: var(--_btn-pop-width);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+  #on-svg {
+    height: unset;
+    aspect-ratio: 1/1;
+    width: calc(var(--_btn-pop-width) - 0.3rem);
+    margin: auto;
+  }
+  #on-svg path {
+    stroke-width: 1px;
+    stroke: var(--dark);
+    fill: var(--dark);
+  }
+  #on-svg #path9 {
+    fill: white;
+  }
+  #off-svg {
+    height: unset;
+    aspect-ratio: 1/1;
+    width: calc(var(--_btn-pop-width) - 0.3rem);
+    visibility: hidden;
+    margin: auto;
+  }
+  #off-svg path {
+    stroke-width: 1px;
+    stroke: black;
+    fill: transparent;
+  }
+  button {
+    --_btn-pop-width: 1.5rem;
+    --_btn-padding-w: 0rem;
+    --_btn-padding-h: 0rem;
+    position: relative;
+    border: none;
+    padding: var(--_btn-padding-h) var(--_btn-padding-w);
+    isolation: isolate;
+    border-radius: 1000px;
+    outline: 1px solid #666;
+    display: flex;
+    flex-direction: row;
+    gap: var(--_btn-padding-w);
+    height: calc(var(--_btn-pop-width) + 2 * var(--_btn-padding-h));
+    width: calc(2 * var(--_btn-pop-width) + 3 * var(--_btn-padding-w));
+  }
+  button::after {
+    content: "";
+    position: absolute;
+    top: var(--_btn-padding-h);
+    left: var(--_btn-padding-w);
+    z-index: -1;
+    aspect-ratio: 1/1;
+    width: var(--_btn-pop-width);
+    border-radius: calc(var(--_btn-pop-width) / 2);
+    background-color: var(--bg-color);
+    transition:
+      left 0.4s,
+      background 0.4s;
+  }
+
+  :root.theme-dark button {
+    outline: 1px solid #797979;
+    background-color: #2e2e2e;
+  }
+  :root.theme-dark #on-svg {
+    visibility: hidden;
+  }
+
+  :root.theme-dark #off-svg {
+    visibility: visible;
+  }
+  :root.theme-dark #off-svg > path {
+    stroke: white;
+  }
+  :root.theme-dark button::after {
+    outline: none;
+    left: calc(var(--_btn-padding-w) * 2 + var(--_btn-pop-width));
+  }
+</style>
+
+<script>
+  class ThemeToggle extends HTMLElement {
+    constructor() {
+      super();
+
+      const button = this.querySelector("#theme-toggle")!;
+
+      /** Set the theme to dark/light mode. */
+      const setTheme = (dark: boolean) => {
+        document.documentElement.classList[dark ? "add" : "remove"](
+          "theme-dark"
+        );
+        button.setAttribute("aria-pressed", String(dark));
+      };
+
+      // Toggle the theme when a user clicks the button.
+      button.addEventListener("click", () => setTheme(!this.isDark()));
+
+      // Initialize button state to reflect current theme.
+      setTheme(this.isDark());
+    }
+
+    isDark() {
+      return document.documentElement.classList.contains("theme-dark");
+    }
+  }
+  customElements.define("theme-toggle", ThemeToggle);
+</script>

@@ -1,16 +1,17 @@
 <div class="first">
   <div class="image-wrapper">
     <svg
+      class="crane"
       width="50"
       height="60"
       viewBox="0 0 50 60"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
-    <path
-      style="fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;"
-      d="M 11.795435,1.0438467 V 12.08313 H 0.04974367 L 11.795435,1.0438467"
-      id="head"></path>
+      <path
+        style="fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;"
+        d="M 11.795435,1.0438467 V 12.08313 H 0.04974367 L 11.795435,1.0438467"
+        id="head"></path>
       <path
         fill="#b3b3b3"
         d="M 11.795435,1.0438467 V 30.879335 L 24.058599,18.723182 Z"
@@ -25,8 +26,7 @@
         fill="#e6e6e6"
         d="m 30.961195,30.937008 -9.25856,14.377794 9.254433,14.513673 z"
         id="path5"
-        style="stroke-linecap:round;stroke-linejoin:round"
-      ></path>
+        style="stroke-linecap:round;stroke-linejoin:round"></path>
       <path
         style="stroke-linejoin:round;fill:#ffffff;stroke-linecap:round;"
         d="M 11.795435,30.879335 24.058599,18.723182 30.961195,30.937005 Z"
@@ -36,8 +36,7 @@
           fill="#e6e6e6"
           d="M 31.019522,11.860296 30.961195,30.937005 49.995011,0.0423681 Z"
           id="path2"
-          style="stroke-linecap:round;stroke-linejoin:round;"
-        ></path>
+          style="stroke-linecap:round;stroke-linejoin:round;"></path>
         <path
           style="fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;"
           d="M 11.832897,30.879481 31.019522,11.860296 30.961195,30.937005 Z"
@@ -45,88 +44,166 @@
       </g>
     </svg>
   </div>
-  <div>
-    <h1>Accept</h1>
+  <div class="message">
+    <h1 class="slogan"><span>Accept</span> — революция в образовании</h1>
     <p>
       цифровой образовательный ресурс для улучшения навыков программирования
     </p>
+    <a class="get" href="#contacts"
+      ><span>Попробовать</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="arrow"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="3"
+        stroke="white"
+        fill="white"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 12l14 0"></path>
+        <path d="M13 18l6 -6"></path>
+        <path d="M13 6l6 6"></path>
+      </svg></a
+    >
   </div>
 </div>
 
 <style>
+  .message {
+    background: linear-gradient(
+      90deg,
+      var(--primary),
+      #f702c2,
+      #bd37fb,
+      #bd37fb,
+      #9f1bf6,
+      #9f1bf6
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
   h1 {
-    font-size: 5em;
+    font-weight: 600;
+    font-size: 3rem;
+    /* line-height: 1.5; */
+    /* background: linear-gradient(90deg, var(--primary), #bd37fb); */
+    padding-bottom: 0.7rem;
   }
 
-  svg {
+  :root.theme-dark h1 {
+    color: transparent;
+  }
+
+  h1 span {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: transparent;
+  }
+
+  svg.crane {
     width: unset;
     aspect-ratio: 50/60;
     height: 40vh;
     margin: auto;
   }
 
-  svg path {
-    stroke-width: 0.1px;
+  :root.theme-dark svg.crane {
+    filter: drop-shadow(15px 15px 50px var(--primary));
+  }
+
+  svg.crane path {
+    stroke-width: 0.3px;
     stroke: black;
   }
-  svg #wing {
-    transform-origin: bottom left;
-    animation: wing 3s ease-in-out infinite;
+  svg.crane #wing {
+    transform-origin: 10px 30px;
+    animation: wing 1s infinite alternate;
   }
 
   @keyframes wing {
-    0%,
-    100% {
-      transform: rotateX(0) rotateY(0)
+    0% {
+      transform: rotateX(0);
     }
-    45%,
-    55% {
-      transform: rotateX(7deg) rotateY(7deg);
+    100% {
+      transform: rotateX(-25deg);
     }
   }
 
-  svg #head{
+  svg.crane #head {
     transform-origin: 10px 10px;
-    animation: headshake 2s ease-in-out infinite;
+    animation: headshake 2s ease-in-out infinite alternate;
   }
 
   @keyframes headshake {
-    0%{
-      transform:  rotateZ(0);
+    0% {
+      transform: rotateZ(5deg) translateX(0);
     }
-    45%, 55%{
-      transform:  rotateZ(-2deg);
-    }
-    100%{
-      transform:  rotateZ(0);
+    100% {
+      transform: rotateZ(-5deg) translateX(1px);
     }
   }
 
   .image-wrapper {
     display: flex;
-    min-width: 50%;
-    background: var(--bg-image-main-top);
   }
   p {
-    max-width: 20em;
+    max-width: 30rem;
   }
 
   .first {
-    width: 60%;
+    width: 80%;
     min-height: 80vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 0 auto;
+    gap: 1.5rem;
   }
+
   @media (orientation: portrait) {
     .first {
       flex-direction: column;
       min-height: 50vh;
       margin: 5vh auto;
     }
-    svg {
-      height: 20vh;
-    }
+  }
+  .get {
+    margin-top: 2rem;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9em;
+    background: linear-gradient(90deg, var(--primary), #f702c2);
+    border-radius: 0.75rem;
+    padding: 0.8rem 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    width: fit-content;
+    transition: box-shadow 0.25s;
+    box-shadow: 1px 1px 3px black;
+  }
+
+  :root.theme-dark .get {
+    box-shadow: 2px 2px 4px var(--secondary);
+  }
+
+  :root.theme-dark .get:hover {
+    box-shadow: 3px 3px 4px var(--secondary);
+  }
+
+  .get:hover {
+  }
+  .arrow {
+    transition: translate 0.25s;
+  }
+  .get:hover .arrow {
+    /* transition: transform 0.25s; */
+
+    translate: 5px 0;
   }
 </style>
