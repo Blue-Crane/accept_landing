@@ -1,49 +1,132 @@
 <div class="first">
-    <div class="image-wrapper">
-        <img src="/accept_landing/assets/accept_logo_small.png" >
-    </div>
-    <div>
-        <h1>Accept</h1>
-        <p>цифровой образовательный ресурс для улучшения навыков программирования</p>
-    </div>
+  <div class="image-wrapper">
+    <svg
+      width="50"
+      height="60"
+      viewBox="0 0 50 60"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+    <path
+      style="fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;"
+      d="M 11.795435,1.0438467 V 12.08313 H 0.04974367 L 11.795435,1.0438467"
+      id="head"></path>
+      <path
+        fill="#b3b3b3"
+        d="M 11.795435,1.0438467 V 30.879335 L 24.058599,18.723182 Z"
+        id="path3"
+        style="stroke-linejoin:round"></path>
+      <path
+        fill="#ffffff"
+        d="m 11.795435,30.879335 19.16576,0.05767 -6.977998,10.725574 z"
+        id="path4"
+        style="stroke-linejoin:round"></path>
+      <path
+        fill="#e6e6e6"
+        d="m 30.961195,30.937008 -9.25856,14.377794 9.254433,14.513673 z"
+        id="path5"
+        style="stroke-linecap:round;stroke-linejoin:round"
+      ></path>
+      <path
+        style="stroke-linejoin:round;fill:#ffffff;stroke-linecap:round;"
+        d="M 11.795435,30.879335 24.058599,18.723182 30.961195,30.937005 Z"
+        id="path1"></path>
+      <g id="wing">
+        <path
+          fill="#e6e6e6"
+          d="M 31.019522,11.860296 30.961195,30.937005 49.995011,0.0423681 Z"
+          id="path2"
+          style="stroke-linecap:round;stroke-linejoin:round;"
+        ></path>
+        <path
+          style="fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;"
+          d="M 11.832897,30.879481 31.019522,11.860296 30.961195,30.937005 Z"
+          id="path6"></path>
+      </g>
+    </svg>
+  </div>
+  <div>
+    <h1>Accept</h1>
+    <p>
+      цифровой образовательный ресурс для улучшения навыков программирования
+    </p>
+  </div>
 </div>
 
 <style>
-h1{
+  h1 {
     font-size: 5em;
-}
+  }
 
-img{
-    aspect-ratio: 729/875;
+  svg {
+    width: unset;
+    aspect-ratio: 50/60;
     height: 40vh;
     margin: auto;
-}
+  }
 
-.image-wrapper{
+  svg path {
+    stroke-width: 0.1px;
+    stroke: black;
+  }
+  svg #wing {
+    transform-origin: bottom left;
+    animation: wing 3s ease-in-out infinite;
+  }
+
+  @keyframes wing {
+    0%,
+    100% {
+      transform: rotateX(0) rotateY(0)
+    }
+    45%,
+    55% {
+      transform: rotateX(7deg) rotateY(7deg);
+    }
+  }
+
+  svg #head{
+    transform-origin: 10px 10px;
+    animation: headshake 2s ease-in-out infinite;
+  }
+
+  @keyframes headshake {
+    0%{
+      transform:  rotateZ(0);
+    }
+    45%, 55%{
+      transform:  rotateZ(-2deg);
+    }
+    100%{
+      transform:  rotateZ(0);
+    }
+  }
+
+  .image-wrapper {
     display: flex;
     min-width: 50%;
     background: var(--bg-image-main-top);
-}
-p{
+  }
+  p {
     max-width: 20em;
-}
+  }
 
-.first{
+  .first {
     width: 60%;
     min-height: 80vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 0 auto;
-}
-@media (orientation: portrait) {
-    .first{
-        flex-direction: column;
-        min-height: 50vh;
-        margin: 5vh auto;
+  }
+  @media (orientation: portrait) {
+    .first {
+      flex-direction: column;
+      min-height: 50vh;
+      margin: 5vh auto;
     }
-    img{
-        height: 20vh;
+    svg {
+      height: 20vh;
     }
-}
+  }
 </style>
