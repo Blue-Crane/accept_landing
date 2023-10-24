@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Body/Hero/Hero.astro"
 import Features from "../components/Body/Features/Features.astro";
+import Contacts from "../components/Body/Contacts/Contacts.astro";
 ---
 
 <BaseLayout>
@@ -10,11 +11,8 @@ import Features from "../components/Body/Features/Features.astro";
   <div class="inter" style="height: 300px;">Inter 2</div>
   <div class="inter" style="height: 300px;">Inter 3</div>
   <div class="inter" style="height: 300px;">Inter 4</div>
-  <div class="last" style="height: 300px;">Last</div>
+  <Contacts />
 </BaseLayout>
 
 <style>
-  .last {
-    background-image: var(--bg-image-main-bottom);
-  }
 </style>
