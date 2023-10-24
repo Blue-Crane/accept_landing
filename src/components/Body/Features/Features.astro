@@ -63,6 +63,7 @@ const features = await getCollection("features")
         gap: 1rem;
         padding: 5px;
         contain: content;
+        width: 100%;
     }
     @media (orientation: landscape) and (min-width: 700px){
         .accordion{
@@ -74,7 +75,6 @@ const features = await getCollection("features")
         position: relative;
         isolation: isolate;
         flex-basis: calc(var(--_button-size) + 2 * var(--_panel-padding));
-        width: 0px;
         padding: var(--_panel-padding);
         overflow: hidden;
         border-radius: calc((var(--_button-size) + 2 * var(--_panel-padding)) / 2);
