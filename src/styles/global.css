@@ -62,15 +62,59 @@ a {
   color: var(--link-color);
   text-decoration: none;
 }
+p {
+  text-align: center;
+}
 
 h1,
 h2,
 h3,
 h4,
 h5 {
-  line-height: 1.1;
+  line-height: 1.3;
   font-family: var(--font-brand);
   font-weight: 600;
+}
+
+h1 {
+  font-size: 3rem;
+  padding-bottom: 0.7rem;
+}
+
+:root.theme-dark h1,
+:root.theme-dark h2,
+:root.theme-dark h3,
+:root.theme-dark h4,
+:root.theme-dark h5 {
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    #f702c2,
+    #bd37fb,
+    #bd37fb,
+    #9f1bf6,
+    #9f1bf6
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h1 span {
+  font-size: 1.2em;
+  font-weight: 600;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    #f702c2,
+    #bd37fb,
+    #bd37fb,
+    #9f1bf6,
+    #9f1bf6
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {

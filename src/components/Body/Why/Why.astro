@@ -1,0 +1,55 @@
+<section>
+  <div class="inner">
+    <div class="item">
+      <h2>Законченный</h2>
+      <!-- Полный/Единый -->
+      <p>
+        Все компоненты обучения программированию на одной платформе.
+        Автоматическая проверка задач, уроки, турниры, уведомления - всё в под
+        одной крышей.
+      </p>
+    </div>
+    <div class="item">
+      <h2>Встраиваемый</h2>
+      <!-- Гибкий/Встраевоемый -->
+      <p>
+        Интегрируйте новую систему обучения не ломая старой. Accept имеет
+        модульную архитектуру, что позволяет интегрировать систему по частям.
+      </p>
+    </div>
+    <div class="item">
+      <h2>Знакомый</h2>
+      <!-- Доступный -->
+      <p>
+        Построен на основе общепринятой классно-урочной системы. Имеет низкий
+        порог знаний для начала использования.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    margin: 6rem 0 10rem 0;
+  }
+  .inner {
+    padding: 0 6rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    gap: clamp(4rem, 8vw, 8rem);
+  }
+  @media screen and (max-width: 50rem) {
+    .section {
+      margin: 2rem 0;
+    }
+    .inner {
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+  .item h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+</style>
