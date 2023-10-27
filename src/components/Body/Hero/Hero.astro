@@ -1,4 +1,4 @@
-<div class="first">
+<section class="first">
   <div class="image-wrapper">
     <svg
       class="crane"
@@ -45,12 +45,12 @@
     </svg>
   </div>
   <div class="message">
-    <h1 class="slogan"><span>Accept</span> — революция в образовании</h1>
+    <h1><span>Accept</span> — революция в образовании</h1>
     <p>
       цифровой образовательный ресурс для улучшения навыков программирования
     </p>
-    <a class="get" href="#contacts"
-      ><span>Попробовать</span>
+    <a class="get" href="#contacts">
+      <span>Попробовать</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="arrow"
@@ -66,43 +66,20 @@
         <path d="M5 12l14 0"></path>
         <path d="M13 18l6 -6"></path>
         <path d="M13 6l6 6"></path>
-      </svg></a
-    >
+      </svg>
+    </a>
   </div>
-</div>
+</section>
 
 <style>
-  .message {
-    background: linear-gradient(
-      90deg,
-      var(--primary),
-      #f702c2,
-      #bd37fb,
-      #bd37fb,
-      #9f1bf6,
-      #9f1bf6
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
+  .first {
+    width: 80%;
+    margin: 10rem auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
   }
-  h1 {
-    font-weight: 600;
-    font-size: 3rem;
-    /* line-height: 1.5; */
-    /* background: linear-gradient(90deg, var(--primary), #bd37fb); */
-    padding-bottom: 0.7rem;
-  }
-
-  :root.theme-dark h1 {
-    color: transparent;
-  }
-
-  h1 span {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: transparent;
-  }
-
   svg.crane {
     width: unset;
     aspect-ratio: 50/60;
@@ -151,16 +128,7 @@
   }
   p {
     max-width: 30rem;
-  }
-
-  .first {
-    width: 80%;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0 auto;
-    gap: 1.5rem;
+    text-align: start;
   }
 
   @media (orientation: portrait) {
@@ -168,6 +136,9 @@
       flex-direction: column;
       min-height: 50vh;
       margin: 5vh auto;
+    }
+    svg.crane {
+      height: 15rem;
     }
   }
   .get {
@@ -202,8 +173,6 @@
     transition: translate 0.25s;
   }
   .get:hover .arrow {
-    /* transition: transform 0.25s; */
-
     translate: 5px 0;
   }
 </style>
