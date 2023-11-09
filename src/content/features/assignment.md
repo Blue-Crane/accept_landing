@@ -1,6 +1,6 @@
 ---
-order: 2
-title: "Создавайте уроки и задания"
+order: 3
+title: "Проводите уроки"
 imageLeft: "/accept_landing/assets/features/assignment.png"
 imageRight: "/accept_landing/assets/features/assignment.png"
 bottomP: "Учителю доступен удобная панель управления уроком,

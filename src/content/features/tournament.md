@@ -1,6 +1,6 @@
 ---
-order: 3
-title: "Проводите турниры"
+order: 4
+title: "Управляйте турнирами"
 topP: "Турниры"
 imageLeft: "/accept_landing/assets/features/tournament.png"
 imageRight: "/accept_landing/assets/features/tournament.png"
