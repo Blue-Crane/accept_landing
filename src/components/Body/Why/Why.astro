@@ -1,7 +1,7 @@
 <section>
   <div class="inner">
     <div class="item">
-      <h2>Многофункциональный</h2>
+      <h2>Мощный</h2>
       <p>
         Создавайте задачи, проводите уроки и организуйте турниры - не тратьте
         время на рутину. Accept всё сделает за Вас.
@@ -33,7 +33,8 @@
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
     /* display: grid; */
     /* grid-template-columns: 1fr 1fr 1fr; */
     gap: clamp(4rem, 8vw, 8rem);
@@ -49,7 +50,7 @@
   }
 
   .item {
-    flex: 1 1 0;
+    /* flex: 1 1 0; */
   }
 
   .item p {

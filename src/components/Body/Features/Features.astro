@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 const features = (await getCollection("features")).sort((a, b) => a.data.order - b.data.order);
 ---
-
+<div class="features">
 {
   features.map(async (feature, index) => {
     const {Content, headings} = await feature.render();
@@ -11,7 +11,7 @@ const features = (await getCollection("features")).sort((a, b) => a.data.order -
       <section>
         <div class="inner">
           <div class="mainInfo">
-            <h2 class="title">{feature.data.title}</h2>
+            <h1 class="title">{feature.data.title}</h1>
             <div class="P">
               <Content />
             </div>
@@ -31,17 +31,36 @@ const features = (await getCollection("features")).sort((a, b) => a.data.order -
             {feature.data.bottomP}
           </p>
         </div>
-      </section>
+        <div class="separator"></div>
+        </section>
       )
   })
 }
+</div>
 
 <style>
+  .features section:nth-child(odd){
+    background-color: var(--light-2);
+  }
+  .separator{
+    width: 100%;
+    outline: 1px solid #00000030;
+  }
+  :root.theme-dark .separator{
+    filter: invert(1);
+  }
+  :root.theme-dark .features section:nth-child(odd) {
+    background-color: var(--dark-2);
+  }
+
+  h2{
+    font-size: 3rem;
+  }
   section {
-    margin: 5rem 0;
+    /* padding: 4rem 0; */
   }
   .inner {
-    padding: 0 5rem;
+    padding: 4rem 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,14 +68,14 @@ const features = (await getCollection("features")).sort((a, b) => a.data.order -
   }
   @media (orientation: portrait) {
     .inner{
-      padding: 0 1rem;
+      padding: 4rem 1rem;
     }
   }
   .mainInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
   }
   .P {
     max-width: 65%;
@@ -65,6 +84,8 @@ const features = (await getCollection("features")).sort((a, b) => a.data.order -
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: .3rem;
+    margin: 1.5rem 0;
   }
   img {
     width: 35vw;
