@@ -81,11 +81,7 @@ h1 {
   padding-bottom: 0.7rem;
 }
 
-:root.theme-dark h1,
-:root.theme-dark h2,
-:root.theme-dark h3,
-:root.theme-dark h4,
-:root.theme-dark h5 {
+:root.theme-dark h1 {
   background: linear-gradient(
     90deg,
     var(--primary),
