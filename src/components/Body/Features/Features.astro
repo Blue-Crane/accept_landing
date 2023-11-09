@@ -15,7 +15,7 @@ const features = (await getCollection("features")).sort(
           <div class="inner">
             <div class="mainInfo">
               <h1 class="title">{feature.data.title}</h1>
-              <div class="P">
+              <div class="paragraph">
                 <Content />
               </div>
             </div>
@@ -31,7 +31,7 @@ const features = (await getCollection("features")).sort(
                 alt="Feature. Student`s` view"
               />
             </div>
-            <p class="P">{feature.data.bottomP}</p>
+            <div class="paragraph">{feature.data.bottomP}</div>
           </div>
           <div class="separator" />
         </section>
@@ -79,7 +79,7 @@ const features = (await getCollection("features")).sort(
     align-items: center;
     gap: 0.5rem;
   }
-  .P {
+  .paragraph {
     max-width: 65%;
   }
   .images {
@@ -95,10 +95,10 @@ const features = (await getCollection("features")).sort(
     border-radius: 5px;
   }
   img.right {
-    box-shadow: 8px 5px 40px 0px var(--primary);
+    box-shadow: 8px 5px 30px 0px var(--primary);
   }
   img.left {
-    box-shadow: -8px 5px 40px 0px var(--primary);
+    box-shadow: -8px 5px 30px 0px var(--primary);
   }
   :root.theme-dark img {
     box-shadow: 0px 0px 18px 0px var(--light);
