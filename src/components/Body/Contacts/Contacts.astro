@@ -18,7 +18,6 @@ if (Astro.request.method === "POST") {
       }),
       headers: { "content-type": "application/json" },
     });
-    return Astro.redirect("/accept_landing");
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
