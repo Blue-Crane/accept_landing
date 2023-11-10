@@ -16,6 +16,7 @@ const sectionCollection = defineCollection({
   schema: z.object({
     label: z.string(),
     href: z.string(),
+    order: z.number(),
   }),
 });
 

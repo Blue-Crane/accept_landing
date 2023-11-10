@@ -1,8 +1,38 @@
+---
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const company = data.get("company");
+    const email = data.get("email");
+
+    await fetch("https://ts-nix.vplicei.org/api/feedback/add", {
+      method: "POST",
+      body: JSON.stringify({
+        author: company,
+        date: Date.now(),
+        message: `<p>Company: ${company}</p><p>Email: ${email}</p>`,
+        spec: "",
+        subject: "Landing",
+        title: "Request from organization",
+        reviewed: false,
+      }),
+      headers: { "content-type": "application/json" },
+    });
+    return Astro.redirect("/accept_landing");
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
 <section id="contacts">
+  <h2>Заинтересованы? Оставьте свои контакты и мы свяжемся с вами!</h2>
   <div class="wrapper">
     <div class="left">
-      <h3>Оставьте свои контакты и мы свяжемся с вами</h3>
-      <form action="">
+      <h3>Контакты для связи</h3>
+      <form method="POST">
         <div class="fields">
           <div class="formfield">
             <label for="company">Организация</label>
@@ -10,6 +40,7 @@
               type="text"
               name="company"
               id="company"
+              required
               placeholder="Гимназия №10, город Москва"
             />
           </div>
@@ -19,11 +50,13 @@
               type="email"
               name="email"
               id="email"
+              required
               placeholder="example@email.org"
             />
           </div>
         </div>
-        <button type="submit">Отправить</button>
+
+        <button id="submit">Отправить</button>
       </form>
     </div>
     <div class="right">
@@ -41,13 +74,18 @@
     </div>
   </div>
 </section>
-
 <style>
+  h2 {
+    margin: 2rem auto 5rem auto;
+    text-align: center;
+    font-size: 1.7rem;
+    max-width: max(50%, 400px);
+  }
   h3 {
     max-width: 70%;
   }
   section {
-    padding: 8rem 0;
+    padding: 0 0 8rem 0;
     min-height: 50vh;
     border-bottom: 1px solid #00000030;
   }

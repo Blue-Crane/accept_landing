@@ -2,7 +2,9 @@
 import ThemeToggle from "./ThemeToggle.astro";
 import { getCollection } from "astro:content";
 
-const sections = await getCollection("sections");
+const sections = (await getCollection("sections"))
+  .filter((s) => s.data.order != -1)
+  .sort((a, b) => a.data.order - b.data.order);
 
 const restSections = sections.filter((s) => s.data.label != "Контакты");
 const mainSections = sections.filter((s) => s.data.label == "Контакты");

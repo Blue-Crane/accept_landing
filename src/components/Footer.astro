@@ -5,7 +5,9 @@ import Gmail from "./Icons/Gmail.astro";
 import Tg from "./Icons/Tg.astro";
 import Vk from "./Icons/Vk.astro";
 
-export const sections = await getCollection("sections");
+const sections = (await getCollection("sections"))
+  .filter((s) => s.data.order != -1)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <footer>
