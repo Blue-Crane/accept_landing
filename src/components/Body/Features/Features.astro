@@ -1,81 +1,121 @@
 ---
 import { getCollection } from "astro:content";
 
-const features = (await getCollection("features")).sort((a, b) => a.data.order - b.data.order);
+const features = (await getCollection("features")).sort(
+  (a, b) => a.data.order - b.data.order
+);
 ---
 
-{
-  features.map(async (feature, index) => {
-    const {Content, headings} = await feature.render();
-    return (
-      <section>
-        <div class="inner">
-          <div class="mainInfo">
-            <h2 class="title">{feature.data.title}</h2>
-            <div class="P">
-              <Content />
+<div id="features" class="features">
+  {
+    features.map(async (feature, index) => {
+      const { Content, headings } = await feature.render();
+      return (
+        <section>
+          <div class="inner">
+            <div class="mainInfo">
+              <h1 class="title">{feature.data.title}</h1>
+              <div class="paragraph">
+                <Content />
+              </div>
             </div>
+            <div class="images">
+              <img
+                class="left"
+                src={feature.data.imageLeft}
+                alt="Feature. Teacher`s` view"
+              />
+              <img
+                class="right"
+                src={feature.data.imageRight}
+                alt="Feature. Student`s` view"
+              />
+            </div>
+            <div class="paragraph">{feature.data.bottomP}</div>
           </div>
-          <div class="images">
-            <img
-              src={feature.data.imageLeft}
-              alt="Task description editor"
-            />
-            <img
-              src={feature.data.imageRight}
-              alt="Resulting task"
-            />
-            <!-- Two images one description editor, second resulting task -->
-          </div>
-          <p class="P">
-            {feature.data.bottomP}
-          </p>
-        </div>
-      </section>
-      )
-  })
-}
+          <div class="separator" />
+        </section>
+      );
+    })
+  }
+</div>
 
 <style>
+  .features section:nth-child(odd) {
+    background-color: var(--light-2);
+  }
+  .separator {
+    width: 100%;
+    outline: 1px solid #00000030;
+  }
+  :root.theme-dark .separator {
+    filter: invert(1);
+  }
+  :root.theme-dark .features section:nth-child(odd) {
+    background-color: var(--dark-2);
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+  .title {
+    text-align: center;
+  }
   section {
-    margin: 5rem 0;
+    /* padding: 4rem 0; */
   }
   .inner {
-    padding: 0 5rem;
+    padding: 4rem 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
   @media (orientation: portrait) {
-    .inner{
-      padding: 0 1rem;
+    .inner {
+      padding: 4rem 1rem;
     }
   }
   .mainInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
-  .P {
+  .paragraph {
     max-width: 65%;
+    text-align: center;
   }
   .images {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 1.4rem;
+    margin: 1.5rem 0;
   }
+
   img {
     width: 35vw;
+    border-radius: 5px;
+  }
+  img.right {
+    box-shadow: 8px 5px 30px 0px var(--primary);
+  }
+  img.left {
+    box-shadow: -8px 5px 30px 0px var(--primary);
+  }
+  :root.theme-dark img {
+    box-shadow: 0px 0px 18px 0px var(--light);
   }
   @media screen and (max-width: 700px) {
     .images {
       flex-direction: column;
     }
-    img{
+    img {
       width: 75vw;
     }
+    .paragraph {
+      max-width: 90%;
+    }
   }
-
 </style>

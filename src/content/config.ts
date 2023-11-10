@@ -11,6 +11,16 @@ const featuresCollection = defineCollection({
   }),
 });
 
+const sectionCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    label: z.string(),
+    href: z.string(),
+    order: z.number(),
+  }),
+});
+
 export const collections = {
   features: featuresCollection,
+  sections: sectionCollection,
 };

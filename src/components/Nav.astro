@@ -1,5 +1,13 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
+import { getCollection } from "astro:content";
+
+const sections = (await getCollection("sections"))
+  .filter((s) => s.data.order != -1)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const restSections = sections.filter((s) => s.data.label != "Контакты");
+const mainSections = sections.filter((s) => s.data.label == "Контакты");
 ---
 
 <nav>
@@ -7,7 +15,17 @@ import ThemeToggle from "./ThemeToggle.astro";
     <img src="/accept_landing/assets/logo.svg" alt="logo" class="logo-img" />
      Accept
   </a>
-  <ThemeToggle />
+  <div class="right">
+    <div class="rest">
+      {
+        restSections.map((item) => (
+          <a href={item.data.href}>{item.data.label}</a>
+        ))
+      }
+    </div>
+    {mainSections.map((item) => <a href={item.data.href}>{item.data.label}</a>)}
+    <ThemeToggle />
+  </div>
 </nav>
 
 <script></script>
@@ -21,6 +39,7 @@ import ThemeToggle from "./ThemeToggle.astro";
     justify-content: space-between;
     box-shadow: 0px 1px 1px #aaaaaa;
     background-color: transparent;
+    font-size: 1.3rem;
   }
 
   :root.theme-dark nav {
@@ -29,11 +48,38 @@ import ThemeToggle from "./ThemeToggle.astro";
   .logo-img {
     height: 2.5rem;
   }
+  .right,
+  .rest {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .right a,
+  .rest a {
+    padding-bottom: 0.1rem;
+    background: no-repeat 0 100%;
+    background-image: var(--accept-short-gradient);
+    background-size: 0% 2px;
+    transition: background-size 0.4s ease;
+    transition-delay: 0.2s;
+  }
+  .right a:hover,
+  .rest a:hover {
+    background-size: 100% 2px;
+  }
+
+  @media (max-width: 60rem) {
+    .rest {
+      display: none;
+    }
+  }
   a {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.2rem;
-    font-size: 1.3rem;
   }
 </style>

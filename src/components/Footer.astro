@@ -1,15 +1,102 @@
 ---
+import { getCollection } from "astro:content";
+import Github from "./Icons/Github.astro";
+import Gmail from "./Icons/Gmail.astro";
+import Tg from "./Icons/Tg.astro";
+import Vk from "./Icons/Vk.astro";
 
+const sections = (await getCollection("sections"))
+  .filter((s) => s.data.order != -1)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<footer></footer>
+<footer>
+  <div class="content">
+    <div class="icon">
+      <img src="/accept_landing/assets/logo.svg" alt="logo" class="logo-img" />
+    </div>
+    <div class="linksWrapper">
+      <div class="sections">
+        {sections.map((item) => <a href={item.data.href}>{item.data.label}</a>)}
+      </div>
+      <div class="contacts">
+        <Tg href="https://t.me/flip_floppa" label="Telegram" />
+        <Github href="https://github.com/Blue-Crane" label="GitHub" />
+        <Gmail href="mailto:paradise.crane.accept@gmail.com" label="Gmail" />
+        <Vk href="https://vk.com/dsomni" label="VK" />
+      </div>
+    </div>
+  </div>
+  <div class="corp">
+    © 2020 - {new Date().getFullYear()} Paradise Crane Inc.
+  </div>
+</footer>
 
 <style>
   footer {
-    min-height: 500px;
-    background-color: var(--light);
+    background-color: var(--light-2);
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 5rem 5rem 3rem 5rem;
+    align-items: center;
   }
   :root.theme-dark footer {
-    background-color: var(--dark);
+    background-color: var(--dark-2);
+  }
+  .content {
+    min-width: 60%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10vw;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .logo-img {
+    min-width: 100px;
+    height: clamp(15vh, 5.5rem, 20vh);
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .linksWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 10vw;
+  }
+
+  a {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    width: min-content;
+    padding-bottom: 0.1rem;
+    background: no-repeat 0 100%;
+    background-image: var(--accept-short-gradient);
+    background-size: 0% 1px;
+    transition: background-size 0.4s ease;
+    transition-delay: 0.2s;
+  }
+  a:hover {
+    background-size: 100% 1px;
+  }
+
+  .corp {
+    font-size: 1rem;
   }
 </style>

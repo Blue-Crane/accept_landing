@@ -5,5 +5,6 @@ import purgecss from "astro-purgecss";
 export default defineConfig({
   integrations: [purgecss()],
   site: "https://blue-crane.github.io",
-  base: "/accept_landing"
+  base: "/accept_landing",
+  output: "server",
 });

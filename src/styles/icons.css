@@ -1,0 +1,28 @@
+a {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2rem;
+}
+
+a {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+  width: min-content;
+  padding-bottom: 0.1rem;
+  background: no-repeat 0 100%;
+  background-image: var(--accept-short-gradient);
+  background-size: 0% 1px;
+  transition: background-size 0.4s ease;
+  transition-delay: 0.2s;
+}
+a:hover {
+  background-size: 100% 1px;
+}
+
+a svg {
+}
+
+a:hover svg {
+  stroke: url(#gradient);
+}

@@ -5,7 +5,20 @@
   --secondary: #1c7ed6;
 
   --dark: #0d0f14;
+  --dark-2: #24242f8d;
   --light: #fff;
+  --light-2: #f5f5ffff;
+
+  --accept-gradient: linear-gradient(
+    90deg,
+    var(--primary),
+    #f702c2,
+    #bd37fb,
+    #bd37fb,
+    #9f1bf6,
+    #9f1bf6
+  );
+  --accept-short-gradient: linear-gradient(90deg, var(--primary), #f702c2);
 
   /* Fonts */
   --font-body: "Exo 2";
@@ -81,20 +94,8 @@ h1 {
   padding-bottom: 0.7rem;
 }
 
-:root.theme-dark h1,
-:root.theme-dark h2,
-:root.theme-dark h3,
-:root.theme-dark h4,
-:root.theme-dark h5 {
-  background: linear-gradient(
-    90deg,
-    var(--primary),
-    #f702c2,
-    #bd37fb,
-    #bd37fb,
-    #9f1bf6,
-    #9f1bf6
-  );
+:root.theme-dark h1 {
+  background: var(--accept-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -103,15 +104,7 @@ h1 {
 h1 span {
   font-size: 1.2em;
   font-weight: 600;
-  background: linear-gradient(
-    90deg,
-    var(--primary),
-    #f702c2,
-    #bd37fb,
-    #bd37fb,
-    #9f1bf6,
-    #9f1bf6
-  );
+  background: var(--accept-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;

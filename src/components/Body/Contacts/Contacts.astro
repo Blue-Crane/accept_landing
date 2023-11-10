@@ -1,81 +1,113 @@
-<section class="last" id="contacts">
+---
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const company = data.get("company");
+    const email = data.get("email");
+
+    await fetch("https://ts-nix.vplicei.org/api/feedback/add", {
+      method: "POST",
+      body: JSON.stringify({
+        author: company,
+        date: Date.now(),
+        message: `<p>Company: ${company}</p><p>Email: ${email}</p>`,
+        spec: "",
+        subject: "Landing",
+        title: "Request from organization",
+        reviewed: false,
+      }),
+      headers: { "content-type": "application/json" },
+    });
+    return Astro.redirect("/accept_landing");
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
+<section id="contacts">
+  <h2>Заинтересованы? Оставьте свои контакты и мы свяжемся с вами!</h2>
   <div class="wrapper">
     <div class="left">
-      <div>
-        <h3>Свяжитесь с нами</h3>
-        <div class="description">
-          Оставьте свои контанты и мы свяемся с вами
-        </div>
-      </div>
-      <form action="">
+      <h3>Контакты для связи</h3>
+      <form method="POST">
         <div class="fields">
-          <div class="formfield">
-            <label for="name">Ф.И.О.</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Иваниов Иван Иванович"
-            />
-          </div>
           <div class="formfield">
             <label for="company">Организация</label>
             <input
               type="text"
               name="company"
               id="company"
-              placeholder="Школа №3 города Васино"
+              required
+              placeholder="Гимназия №10, город Москва"
             />
           </div>
           <div class="formfield">
-            <label for="email">Email</label>
+            <label for="email">Email для связи</label>
             <input
               type="email"
               name="email"
               id="email"
-              placeholder="ivanov@vasino.ru"
+              required
+              placeholder="example@email.org"
             />
           </div>
         </div>
-        <button type="submit">Отправить</button>
+
+        <button id="submit">Отправить</button>
       </form>
     </div>
     <div class="right">
-      <div>
-        <h3>Другие способы связи</h3>
-        <div class="description">Напишите нам пользуясь другими средствами</div>
-      </div>
+      <h3>Другие способы связи</h3>
       <div class="options">
         <div>
-          <h4><span></span>Mail</h4>
-          <div class="description">accept@gmail.com</div>
+          <h4>Email</h4>
+          <div class="description">paradise.crane.accept@gmail.com</div>
         </div>
         <div>
-          <h4><span>Telegram</span></h4>
-          <div class="description">@dsomni</div>
+          <h4>Telegram</h4>
+          <div class="description">@d.flip.floppa</div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <style>
-  .last {
-    margin: 5rem 0;
-    background-image: var(--bg-image-main-bottom);
-    height: 70vh;
+  h2 {
+    margin: 2rem auto 5rem auto;
+    text-align: center;
+    font-size: 1.7rem;
+    max-width: max(50%, 400px);
+  }
+  h3 {
+    max-width: 70%;
+  }
+  section {
+    padding: 0 0 8rem 0;
+    min-height: 50vh;
+    border-bottom: 1px solid #00000030;
   }
   .wrapper {
+    color: black;
     width: 60%;
     display: flex;
     flex-direction: row;
     margin: auto;
-    box-shadow: 1px 1px 4px black;
+    box-shadow: 1px 1px 120px var(--primary);
+    min-width: 800px;
+    background-color: var(--light-2);
+    border-radius: 0.5rem;
+  }
+  :root.theme-dark .wrapper {
+    color: white;
+    background-color: var(--dark-2);
+    box-shadow: 1px 1px 120px white;
   }
   .left {
     width: 60%;
-    padding: 1rem;
-    background-color: white;
+    padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -88,12 +120,14 @@
   }
   .right {
     width: 40%;
-    padding: 1rem;
-    background-color: var(--primary);
-    color: white;
+    padding: 1rem 2rem;
+    border-left: 1px solid var(--dark-2);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+  }
+  :root.theme-dark .right {
+    border-left: 1px solid var(--light-2);
   }
   .options {
     display: flex;
@@ -102,30 +136,67 @@
   }
   input {
     border: none;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: 0 0 2px black;
     padding: 0.4rem 1rem;
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
   .formfield {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    margin-top: 0.75rem;
   }
   label {
     font-size: 1rem;
+    margin-bottom: 0.1rem;
+  }
+
+  :root.theme-dark button {
+    background-color: unset;
+    background-image: var(--accept-short-gradient);
+    border: 1px solid var(--dark);
   }
   button {
     color: white;
+    text-transform: uppercase;
     font-weight: 600;
     margin-top: 2rem;
     width: 100%;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
+
     background-color: var(--primary);
   }
   .description {
     font-size: 1rem;
+  }
+  @media screen and (max-width: 850px) {
+    .wrapper {
+      flex-direction: column;
+      min-width: unset;
+    }
+    h3 {
+      max-width: unset;
+    }
+    .left {
+      width: 100%;
+      padding-bottom: 2rem;
+    }
+    .right {
+      width: 100%;
+      border-left: unset;
+      border-top: 1px solid var(--dark-2);
+      padding-bottom: 3rem;
+    }
+    :root.theme-dark .right {
+      border-left: unset;
+      border-top: 1px solid var(--light-2);
+    }
   }
 </style>
