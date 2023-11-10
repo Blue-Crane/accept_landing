@@ -1,5 +1,11 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
+import { getCollection } from "astro:content";
+
+const sections = await getCollection("sections");
+
+const restSections = sections.filter((s) => s.data.label != "Контакты");
+const mainSections = sections.filter((s) => s.data.label == "Контакты");
 ---
 
 <nav>
@@ -9,11 +15,13 @@ import ThemeToggle from "./ThemeToggle.astro";
   </a>
   <div class="right">
     <div class="rest">
-      <a href="#features">Возможности</a>
-      <a href="#pros">Преимущества</a>
-      <a href="#partners">Партнёры</a>
+      {
+        restSections.map((item) => (
+          <a href={item.data.href}>{item.data.label}</a>
+        ))
+      }
     </div>
-    <a href="#contacts">Контакты</a>
+    {mainSections.map((item) => <a href={item.data.href}>{item.data.label}</a>)}
     <ThemeToggle />
   </div>
 </nav>

@@ -1,0 +1,4 @@
+---
+label: "Преимущества"
+href: "#advantages"
+---
