@@ -9,6 +9,6 @@ export default defineConfig({
   base: "/accept_landing",
   output: "server",
   adapter: node({
-    mode: "standalone",
+    mode: "middleware",
   }),
 });
