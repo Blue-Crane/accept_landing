@@ -1,75 +1,21 @@
----
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    const company = data.get("company");
-    const email = data.get("email");
-
-    await fetch("https://ts-nix.vplicei.org/api/feedback/add", {
-      method: "POST",
-      body: JSON.stringify({
-        author: company,
-        date: Date.now(),
-        message: `<p>Company: ${company}</p><p>Email: ${email}</p>`,
-        spec: "",
-        subject: "Landing",
-        title: "Request from organization",
-        reviewed: false,
-      }),
-      headers: { "content-type": "application/json" },
-    });
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
----
-
 <section id="contacts">
-  <h2>Заинтересованы? Оставьте свои контакты и мы свяжемся с вами!</h2>
+  <h2>Заинтересованы? Свяжитесь с нами!</h2>
   <div class="wrapper">
-    <div class="left">
-      <h3>Контакты для связи</h3>
-      <form method="POST">
-        <div class="fields">
-          <div class="formfield">
-            <label for="company">Организация</label>
-            <input
-              type="text"
-              name="company"
-              id="company"
-              required
-              placeholder="Гимназия №10, город Москва"
-            />
-          </div>
-          <div class="formfield">
-            <label for="email">Email для связи</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              placeholder="example@email.org"
-            />
-          </div>
-        </div>
-
-        <button id="submit">Отправить</button>
-      </form>
+    <h3>Наши контакты</h3>
+    <div class="contactWrapper">
+      <h4>Email:</h4>
+      <span class="contact">paradise.crane.accept@gmail.com</span>
     </div>
-    <div class="right">
-      <h3>Другие способы связи</h3>
-      <div class="options">
-        <div>
-          <h4>Email</h4>
-          <div class="description">paradise.crane.accept@gmail.com</div>
-        </div>
-        <div>
-          <h4>Telegram</h4>
-          <div class="description">@d.flip.floppa</div>
-        </div>
-      </div>
+    <div class="contactWrapper">
+      <h4>Telegram:</h4>
+      <span class="contact">@d.flip.floppa</span>
+    </div>
+    <div class="contactWrapper linkWrapper">
+      <a
+        href="mailto:paradise.crane.accept@gmail.com?subject=%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%20Accept&body=%D0%9D%D0%B0%D1%88%D0%B0%20%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%3C%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%3E%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%D0%B0%20%D0%B1%D1%8B%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%B4%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%83%D1%8E%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BE%D0%B1%20Accept!"
+        target="_blank"
+        rel="noopener nereferrer">Связаться с нами!</a
+      >
     </div>
   </div>
 </section>
@@ -81,7 +27,19 @@ if (Astro.request.method === "POST") {
     max-width: max(50%, 400px);
   }
   h3 {
-    max-width: 70%;
+    margin: 0 auto;
+  }
+  h4 {
+    display: inline-block;
+  }
+  .contact {
+    font-size: 1rem;
+  }
+  .contactWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+    flex-wrap: wrap;
   }
   section {
     padding: 0 0 8rem 0;
@@ -90,12 +48,13 @@ if (Astro.request.method === "POST") {
   }
   .wrapper {
     color: black;
-    width: 60%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 2rem;
     margin: auto;
     box-shadow: 1px 1px 120px var(--primary);
-    min-width: 800px;
+    width: 500px;
     background-color: var(--light-2);
     border-radius: 0.5rem;
   }
@@ -104,98 +63,33 @@ if (Astro.request.method === "POST") {
     background-color: var(--dark-2);
     box-shadow: 1px 1px 120px white;
   }
-  .left {
-    width: 60%;
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .left > form {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .right {
-    width: 40%;
-    padding: 1rem 2rem;
-    border-left: 1px solid var(--dark-2);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  :root.theme-dark .right {
-    border-left: 1px solid var(--light-2);
-  }
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  input {
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 2px black;
-    padding: 0.4rem 1rem;
-  }
-
-  .fields {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .formfield {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-  label {
-    font-size: 1rem;
-    margin-bottom: 0.1rem;
-  }
-
-  :root.theme-dark button {
-    background-color: unset;
-    background-image: var(--accept-short-gradient);
+  :root.theme-dark a {
     border: 1px solid var(--dark);
   }
-  button {
-    color: white;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-top: 2rem;
-    width: 100%;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+  :root.theme-dark .linkWrapper {
+    background-image: var(--accept-short-gradient);
+  }
 
+  .linkWrapper {
+    margin-top: 1rem;
     background-color: var(--primary);
+    border-radius: 0.5rem;
   }
-  .description {
-    font-size: 1rem;
+  a {
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: none;
+    padding: 0.7rem 1rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    cursor: pointer;
   }
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 700px) {
     .wrapper {
-      flex-direction: column;
-      min-width: unset;
-    }
-    h3 {
-      max-width: unset;
-    }
-    .left {
-      width: 100%;
-      padding-bottom: 2rem;
-    }
-    .right {
-      width: 100%;
-      border-left: unset;
-      border-top: 1px solid var(--dark-2);
-      padding-bottom: 3rem;
-    }
-    :root.theme-dark .right {
-      border-left: unset;
-      border-top: 1px solid var(--light-2);
+      width: fit-content;
     }
   }
 </style>
