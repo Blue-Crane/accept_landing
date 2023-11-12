@@ -1,0 +1,91 @@
+---
+import { getCollection } from "astro:content";
+import Tg from "../../Icons/Tg.astro";
+import Github from "../../Icons/Github.astro";
+
+const team = (await getCollection("team")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<section id="team">
+  <h1>Команда</h1>
+  <div class="wrapper">
+    {
+      team.map((person, index) => (
+        <div class="person">
+          <img
+            class="portrait"
+            src={person.data.image}
+            alt="Portrait"
+            width="225px"
+            height="225px"
+          />
+          <h2 class="name">{person.data.name}</h2>
+          <div class="role">{person.data.role}</div>
+          <div class="about">{person.data.about}</div>
+          <div class="contacts">
+            <Tg href={person.data.telegram} />
+            <Github href={person.data.github} />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 2rem 0 8rem 0;
+    background-color: var(--light-2);
+  }
+  :root.theme-dark section {
+    background-color: var(--dark-2);
+  }
+  h1 {
+    margin: 0 auto 5rem auto;
+    text-align: center;
+    width: min-content;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10vw;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  :root.theme-dark .portrait {
+    box-shadow: 0 3px 25px white;
+  }
+  .portrait {
+    box-shadow: 0 3px 15px var(--primary);
+    border-radius: 200px;
+    margin-bottom: 2rem;
+    aspect-ratio: 1/1;
+    width: clamp(150px, 20vw, 225px);
+  }
+  .person {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    text-align: center;
+    align-items: center;
+  }
+  .about {
+    max-width: 60%;
+  }
+  .role {
+    font-size: 0.8em;
+    margin-top: -0.4rem;
+  }
+  .contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: min-content;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

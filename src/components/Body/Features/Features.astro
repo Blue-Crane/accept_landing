@@ -38,11 +38,93 @@ const features = (await getCollection("features")).sort(
       );
     })
   }
+  <div class="seeYourself">
+    <a href="https://ts-nix.vplicei.org/" target="_blank">
+      <span> Увидеть своими глазами!</span>
+    </a>
+  </div>
+  <div class="separator"></div>
 </div>
 
 <style>
   .features section:nth-child(odd) {
     background-color: var(--light-2);
+  }
+
+  :root.theme-dark .seeYourself a {
+    border: 1px solid var(--dark);
+  }
+
+  .seeYourself {
+    width: 65%;
+    margin: 3rem auto;
+    background-image: var(--accept-short-gradient);
+    border-radius: 1rem;
+  }
+  .seeYourself a {
+    color: white;
+    font-weight: 600;
+    font-size: 1.7rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: none;
+    padding: 3rem 1rem;
+    border-radius: 1rem;
+    background: transparent;
+    cursor: pointer;
+    text-align: center;
+    background-image: url("/accept_landing/assets/eyes1.png");
+    background-size: clamp(300px, 30vw, 400px);
+    background-repeat: repeat;
+    background-position: 0px 0px;
+    animation: eyesRotate 7s linear infinite;
+  }
+
+  @media (prefers-reduced-motion) {
+    .seeYourself a {
+      animation: unset;
+    }
+  }
+  @keyframes eyesRotate {
+    0% {
+      background-position: 35px 0px;
+    }
+    12.5% {
+      background-position: 24.75px 24.75px;
+    }
+    25% {
+      background-position: 0px 35px;
+    }
+    37.5% {
+      background-position: -24.75px 24.75px;
+    }
+
+    50% {
+      background-position: -35px 0;
+    }
+    62.5% {
+      background-position: -24.75px -24.75px;
+    }
+    75% {
+      background-position: 0 -35px;
+    }
+    87.5% {
+      background-position: 24.75px -24.75px;
+    }
+    100% {
+      background-position: 35px 0px;
+    }
+  }
+  .seeYourself a span {
+    border-radius: 10px;
+    width: fit-content;
+    padding: 0.3rem 0.2rem;
+    backdrop-filter: blur(35px);
+  }
+
+  .seeYourself a:hover {
+    box-shadow: 1px 0 15px var(--primary);
   }
   .separator {
     width: 100%;

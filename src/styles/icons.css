@@ -20,9 +20,6 @@ a:hover {
   background-size: 100% 1px;
 }
 
-a svg {
-}
-
-a:hover svg {
+a:hover svg.icons {
   stroke: url(#gradient);
 }

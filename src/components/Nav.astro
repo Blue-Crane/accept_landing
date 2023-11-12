@@ -11,10 +11,10 @@ const mainSections = sections.filter((s) => s.data.label == "Контакты");
 ---
 
 <nav>
-  <a href="#">
+  <div class="logo">
     <img src="/accept_landing/assets/logo.svg" alt="logo" class="logo-img" />
      Accept
-  </a>
+  </div>
   <div class="right">
     <div class="rest">
       {
@@ -41,7 +41,11 @@ const mainSections = sections.filter((s) => s.data.label == "Контакты");
     background-color: transparent;
     font-size: 1.3rem;
   }
-
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
   :root.theme-dark nav {
     box-shadow: 0px 1px 1px #444444;
   }
