@@ -20,7 +20,21 @@ const sectionCollection = defineCollection({
   }),
 });
 
+const teamCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    name: z.string(),
+    image: z.string(),
+    github: z.string(),
+    telegram: z.string(),
+    about: z.string(),
+    role: z.string(),
+    order: z.number(),
+  }),
+});
+
 export const collections = {
   features: featuresCollection,
   sections: sectionCollection,
+  team: teamCollection,
 };
