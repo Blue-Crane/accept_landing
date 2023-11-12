@@ -7,6 +7,8 @@ const features = (await getCollection("features")).sort(
 ---
 
 <div id="features" class="features">
+  <div class="separator"></div>
+
   {
     features.map(async (feature, index) => {
       const { Content, headings } = await feature.render();
