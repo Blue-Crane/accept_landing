@@ -49,7 +49,7 @@ const features = (await getCollection("features")).sort(
 </div>
 
 <style>
-  .features section:nth-child(odd) {
+  .features section:nth-child(even) {
     background-color: var(--light-2);
   }
 
@@ -135,7 +135,7 @@ const features = (await getCollection("features")).sort(
   :root.theme-dark .separator {
     filter: invert(1);
   }
-  :root.theme-dark .features section:nth-child(odd) {
+  :root.theme-dark .features section:nth-child(even) {
     background-color: var(--dark-2);
   }
 
