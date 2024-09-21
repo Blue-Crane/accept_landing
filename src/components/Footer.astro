@@ -8,6 +8,8 @@ import Vk from "./Icons/Vk.astro";
 const sections = (await getCollection("sections"))
   .filter((s) => s.data.order != -1)
   .sort((a, b) => a.data.order - b.data.order);
+
+const year = new Date().getFullYear();
 ---
 
 <footer>
@@ -28,9 +30,13 @@ const sections = (await getCollection("sections"))
     </div>
   </div>
   <div class="corp">
-    © 2020 - {new Date().getFullYear()} Paradise Crane Inc.
+    © 2020 — <span id="footer-year">{year}</span> Paradise Crane Inc.
   </div>
 </footer>
+
+<script is:inline>
+  document.getElementById("footer-year").innerText = new Date().getFullYear();
+</script>
 
 <style>
   footer {
