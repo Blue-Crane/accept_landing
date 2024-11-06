@@ -1,8 +1,8 @@
 ---
 order: 2
 title: "Отправляйте попытки"
-imageLeft: "/accept_landing/assets/features/attempt_left.png"
-imageRight: "/accept_landing/assets/features/attempt_right.png"
+imageLeft: "/assets/features/attempt_left.png"
+imageRight: "/assets/features/attempt_right.png"
 bottomP: "Доступные языки для сдачи попыток: PascalABC.Net, Python 3.10, Pypy, C/C++ 20, Java 11, C#, JavaScript, Rust, Go, Lua, Haskell, а также Fortran и Cobol.
 Список языков постоянно обновляется."
 ---

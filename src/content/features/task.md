@@ -1,8 +1,8 @@
 ---
 order: 1
 title: "Создавайте задачи"
-imageLeft: "/accept_landing/assets/features/task_left.png"
-imageRight: "/accept_landing/assets/features/task_right.png"
+imageLeft: "/assets/features/task_left.png"
+imageRight: "/assets/features/task_right.png"
 bottomP: "Для решение задачи можно ограничить доступные языки программирования, а также используемую программой память и время её исполнения.
 Существуют текстовые задачи и задачи со сдачей кода."
 ---

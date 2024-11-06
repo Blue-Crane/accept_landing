@@ -2,8 +2,8 @@
 order: 4
 title: "Организуйте турниры"
 topP: "Турниры"
-imageLeft: "/accept_landing/assets/features/tournament_left.png"
-imageRight: "/accept_landing/assets/features/tournament_right.png"
+imageLeft: "/assets/features/tournament_left.png"
+imageRight: "/assets/features/tournament_right.png"
 bottomP: "Организаторам доступна многофункциональная панель управления, которая позволяет в реальном времени управлять проведением турнира. Участникам доступен таймер, показывающий время до начала и окончания турнира, а также чат для связи с организаторами."
 ---
 

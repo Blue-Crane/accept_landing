@@ -5,6 +5,6 @@ import node from "@astrojs/node";
 // https://astro.build/config
 export default defineConfig({
   integrations: [purgecss()],
-  site: "https://blue-crane.github.io",
-  base: "/accept_landing",
+  site: "https://xn--80ak4amr.xn--p1ai",
+  base: "/",
 });
