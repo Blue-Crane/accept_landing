@@ -1,8 +1,8 @@
 ---
 order: 3
 title: "Проводите уроки"
-imageLeft: "/accept_landing/assets/features/assignment_left.png"
-imageRight: "/accept_landing/assets/features/assignment_right.png"
+imageLeft: "/assets/features/assignment_left.png"
+imageRight: "/assets/features/assignment_right.png"
 bottomP: "Преподавателю доступна удобная панель управления, которая включает
 сводную таблицу результатов, попытки пользователей, настройки времени проведения урока,
 а также чат для связи с пользователями."
